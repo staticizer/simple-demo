@@ -5,14 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const root = __dirname;
 const src = path.resolve(root, 'src');
 const dist = path.resolve(root, 'dist');
-const entry = './pages/index.hbs';
 
 module.exports = {
     context: src,
-    entry,
+    entry: {
+        index: './pages/index.hbs',
+        'inner/index': './pages/inner/index.hbs'
+    },
     output: {
-        path: path.resolve(dist),
-        filename: 'assets/index.js'
+        path: dist,
+        filename: 'assets/[name].js'
     },
 
     resolve: {
@@ -54,6 +56,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
+            // moduleFilename: chunk => console.log(chunk) || `${chunk.name}.css`
             filename: 'assets/[name].css',
             chunkFilename: 'assets/[id].css',
         })

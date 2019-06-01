@@ -17,7 +17,7 @@ class InputField extends SzComponent {
 }
 
 module.exports = new InputField({
-    name: 'InputField', // explicit
+    // name: 'InputField', // if not given, file name will be used
     args: [
         {
             name: 'type',
