@@ -24,6 +24,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
+            },
+            {
                 test: /\.hbs$/,
                 use: [
                     {
@@ -37,18 +42,11 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            // you can specify a publicPath here
-                            // by default it uses publicPath in webpackOptions.output
-                            // publicPath: '../',
                             hmr: process.env.NODE_ENV === 'development'
                         },
                     },
-                    {
-                        loader: 'css-loader'
-                    },
-                    {
-                        loader: 'stylus-loader'
-                    }
+                    { loader: 'css-loader' },
+                    { loader: 'stylus-loader' }
                 ]
             }
         ]
