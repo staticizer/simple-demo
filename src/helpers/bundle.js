@@ -1,3 +1,3 @@
-module.exports = function (src, options) {
+module.exports = function bundle(src, options) {
     options.data.root.context.bundleEntries.push(src);
 };
