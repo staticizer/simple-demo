@@ -37,7 +37,7 @@ module.exports = new InputField({
         }
     },
 
-    bundle: [
+    assets: [
         './InputField.client.js',
         './InputField.styl'
     ]

@@ -21,7 +21,9 @@ module.exports = {
 
     resolve: {
         alias: {
-            '~': src
+            '~': src,
+            'assets': path.resolve(src, 'assets'),
+            'components': path.resolve(src, 'components')
         }
     },
 
