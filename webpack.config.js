@@ -1,8 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const SzPlugin = require('./lib/plugin');
-const webpack = require('webpack');
 
 const root = __dirname;
 const src = path.resolve(root, 'src');
@@ -60,6 +61,9 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new CopyPlugin([
+            { from: path.resolve(src, 'static'), to: dist }
+        ]),
         new MiniCssExtractPlugin({
             // moduleFilename: chunk => console.log(chunk) || `${chunk.name}.css`
             filename: 'assets/[name].[hash].css',
@@ -67,7 +71,6 @@ module.exports = {
         }),
 
         new webpack.HotModuleReplacementPlugin(),
-
         new SzPlugin()
     ],
     devServer: {
