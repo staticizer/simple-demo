@@ -1,6 +1,8 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SzPlugin = require('./lib/plugin');
+const webpack = require('webpack');
 
 const root = __dirname;
 const src = path.resolve(root, 'src');
@@ -14,7 +16,7 @@ module.exports = {
     },
     output: {
         path: dist,
-        filename: 'assets/[name].js'
+        filename: 'assets/[name].[hash].js'
     },
 
     resolve: {
@@ -44,7 +46,8 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            hmr: process.env.NODE_ENV === 'development'
+                            hmr: process.env.NODE_ENV === 'development',
+                            reloadAll: true
                         },
                     },
                     { loader: 'css-loader' },
@@ -57,8 +60,15 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             // moduleFilename: chunk => console.log(chunk) || `${chunk.name}.css`
-            filename: 'assets/[name].css',
-            chunkFilename: 'assets/[id].css',
-        })
-    ]
+            filename: 'assets/[name].[hash].css',
+            chunkFilename: 'assets/[id].[hash].css',
+        }),
+
+        new webpack.HotModuleReplacementPlugin(),
+
+        new SzPlugin()
+    ],
+    devServer: {
+        hot: true
+    }
 };
