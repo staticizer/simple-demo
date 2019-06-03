@@ -69,6 +69,6 @@ module.exports = {
         new SzPlugin()
     ],
     devServer: {
-        hot: true
+        // hot: true
     }
 };
