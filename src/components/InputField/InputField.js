@@ -1,5 +1,4 @@
-// const SzComponent = require('staticizer/SzComponent');
-const SzComponent = require('../../../lib/component/SzComponent');
+const { SzComponent } = require('staticizer');
 
 class InputField extends SzComponent {
     render(data) {
