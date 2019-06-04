@@ -4,9 +4,9 @@ module.exports = {
         assetsPrefix: 'assets',
         staticPrefix: false,
         minify: {
-            html: false,
+            html: true,
             js: false,
-            css: false
+            css: true
         }
     },
 
