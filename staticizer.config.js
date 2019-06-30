@@ -1,13 +1,9 @@
 module.exports = {
-    // mode: 'production',
+    mode: 'development',
     output: {
         assetsPrefix: 'assets',
         staticPrefix: false,
-        minify: {
-            html: true,
-            js: false,
-            css: true
-        }
+        minify: true
     },
 
     devServer: {
